@@ -8,8 +8,20 @@ const loadTemperature = async (city) => {
 };
 
 const displayTemperature = (data) => {
-  const temperature = document.getElementById("temp");
-  temperature.innerText = data.main.temp;
+  setInnerTextById("temp", data.main.temp);
+  setInnerTextById("condition", data.weather[0].main);
 };
+
+const setInnerTextById = (id, text) => {
+  const textId = document.getElementById(id);
+  textId.innerText = text;
+};
+
+document.getElementById("btn-search").addEventListener("click", function () {
+  const searchField = document.getElementById("search-field");
+  const city = searchField.value;
+  document.getElementById("city").innerText = city;
+  loadTemperature(city);
+});
 
 loadTemperature("dhaka");
