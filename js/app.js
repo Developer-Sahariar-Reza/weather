@@ -4,7 +4,12 @@ const loadTemperature = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
+  displayTemperature(data);
 };
 
-loadTemperature("chittagong");
+const displayTemperature = (data) => {
+  const temperature = document.getElementById("temp");
+  temperature.innerText = data.main.temp;
+};
+
+loadTemperature("dhaka");
